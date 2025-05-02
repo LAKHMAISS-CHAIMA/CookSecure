@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "id": "5f3d",
+      "username": "sanae",
+      "email": "sanae@gmail.com",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "role": "utilisateur"
+    }
+  ],
+  "recipes": [],
+  "comments": []
+}
