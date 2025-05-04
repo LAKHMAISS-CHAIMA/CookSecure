@@ -9,6 +9,55 @@
       "role": "utilisateur"
     }
   ],
-  "recipes": [],
-  "comments": []
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Tajine de poulet aux olives",
+      "category": "Marocain",
+      "ingredients": "Poulet, olives, citron confit, oignons, épices",
+      "instructions": "Faire revenir le poulet avec les oignons et les épices, ajouter les olives et le citron confit, mijoter à feu doux.",
+      "image": "https://source.unsplash.com/400x300/?tajine",
+      "createdAt": "2025-05-01T14:00:00Z",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Pizza Margherita",
+      "category": "Italien",
+      "ingredients": "Pâte à pizza, sauce tomate, mozzarella, basilic",
+      "instructions": "Étaler la pâte, ajouter la sauce, la mozzarella, enfourner à 220°C pendant 10 minutes.",
+      "image": "https://source.unsplash.com/400x300/?pizza",
+      "createdAt": "2025-04-29T12:00:00Z",
+      "userId": 2
+    },
+    {
+      "id": 3,
+      "title": "Couscous marocain",
+      "category": "Marocain",
+      "ingredients": "Semoule, légumes, pois chiches, viande",
+      "instructions": "Cuire la viande et les légumes séparément, puis les mélanger avec la semoule cuite à la vapeur.",
+      "image": "https://via.placeholder.com/300",
+      "createdAt": "2025-04-28T10:00:00Z",
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "title": "Tiramisu",
+      "category": "Italien",
+      "ingredients": "Mascarpone, œufs, sucre, café, biscuits à la cuillère",
+      "instructions": "Alterner les couches de crème et de biscuits trempés dans le café, puis réfrigérer.",
+      "image": "https://via.placeholder.com/300",
+      "createdAt": "2025-04-27T09:00:00Z",
+      "userId": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "recipeId": 2,
+      "userId": 1,
+      "userName": "Ali",
+      "text": "Très bon plat ! J’ai adoré."
+    }
+  ]
 }

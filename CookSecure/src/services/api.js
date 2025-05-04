@@ -1,15 +1,27 @@
-const BASE_URL = "http://localhost:3001"; 
+import axios from "axios";
 
-export async function getUsers() {
-  const res = await fetch(`${BASE_URL}/users`);
-  return await res.json();
-}
+const API_URL = "http://localhost:3000";
 
-export async function createUser(userData) {
-  const res = await fetch(`${BASE_URL}/users`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(userData),
-  });
-  return await res.json();
-}
+export const getRecipes = async () => {
+  const response = await axios.get(`${API_URL}/recipes`);
+  return response.data;
+};
+
+export const getRecipeById = async (id) => {
+  const response = await axios.get(`${API_URL}/recipes/${id}`);
+  return response.data;
+};
+
+export const deleteRecipe = async (id) => {
+  await axios.delete(`${API_URL}/recipes/${id}`);
+};
+
+export const createRecipe = async (data) => {
+  const response = await axios.post(`${API_URL}/recipes`, data);
+  return response.data;
+};
+
+export const updateRecipe = async (id, data) => {
+  const response = await axios.put(`${API_URL}/recipes/${id}`, data);
+  return response.data;
+};

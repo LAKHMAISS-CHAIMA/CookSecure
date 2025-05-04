@@ -1,66 +1,52 @@
-import React, { useState, useEffect } from "react";
-import { FaSearch, FaHeart, FaSignOutAlt } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { getCurrentUser, logoutUser } from "../services/authService";
+import { Link } from "react-router-dom";
+import { useAuth } from "../services/authService";
+import { useTheme } from "../services/themeService";
 
-function Header({ onSearch }) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const current = getCurrentUser();
-    setUser(current);
-  }, []);
-
-  const handleLogout = () => {
-    logoutUser();
-    navigate("/");
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (onSearch) onSearch(searchTerm);
-  };
+const Header = () => {
+  const { currentUser, logoutUser } = useAuth();
+  const { dark, toggle } = useTheme();
 
   return (
-    <header className="bg-red-900 text-white py-4 px-6 shadow-md flex justify-between items-center flex-wrap">
-      <Link to="/home" className="text-2xl font-bold tracking-wide">
-        🍔 CookSecure
-      </Link>
-
-      <form onSubmit={handleSearch} className="flex items-center bg-white rounded-full px-3 py-1 w-full sm:w-72 mt-3 sm:mt-0">
-        <input
-          type="text"
-          placeholder="Rechercher une recette..."
-          className="flex-grow outline-none bg-transparent text-gray-800 text-sm"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button type="submit">
-          <FaSearch className="text-red-600" />
-        </button>
-      </form>
-
-      <div className="flex items-center gap-4 mt-3 sm:mt-0">
-        <Link to="/favorites" title="Favoris">
-          <FaHeart className="text-white text-xl hover:text-red-300" />
+    <header className="bg-slate-800 text-white p-4 shadow-md">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link to="/" className="text-xl font-bold">
+          Mon Application
         </Link>
-
-        {user && (
-          <span className="text-sm">
-            {user.username} ({user.role})
-          </span>
-        )}
-
-        {user && (
-          <button onClick={handleLogout} title="Déconnexion">
-            <FaSignOutAlt className="text-white text-xl hover:text-red-300" />
+        
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={toggle}
+            className="p-2 rounded-full bg-slate-700 hover:bg-slate-600"
+          >
+            {dark ? "☀️" : "🌙"}
           </button>
-        )}
+          
+          {currentUser ? (
+            <div className="flex items-center space-x-4">
+              {currentUser.role === "admin" && (
+                <Link to="/admin" className="hover:text-red-400">
+                  Admin
+                </Link>
+              )}
+              <button 
+                onClick={logoutUser}
+                className="bg-red-700 text-white px-3 py-1 rounded hover:bg-red-600"
+              >
+                Déconnexion
+              </button>
+            </div>
+          ) : (
+            <Link 
+              to="/connect"
+              className="bg-red-700 text-white px-3 py-1 rounded hover:bg-red-600"
+            >
+              Connexion
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   );
-}
+};
 
 export default Header;
